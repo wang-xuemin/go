@@ -7,7 +7,7 @@ import (
 
 // Log
 func Log(filename string, s string) (err error) {
-	f, err := os.OpenFile(filename, os.O_RDWR | os.O_CREATE | os.O_APPEND, os.ModePerm)
+	f, err := os.OpenFile(filename, os.O_RDWR|os.O_CREATE|os.O_APPEND, os.ModePerm)
 	if err != nil {
 		return
 	}
@@ -25,11 +25,12 @@ func Log(filename string, s string) (err error) {
 
 // Logger
 func Logger(filename string, s string) (err error) {
-	f, err := os.OpenFile(filename, os.O_RDWR | os.O_CREATE | os.O_APPEND, os.ModePerm)
+	f, err := os.OpenFile(filename, os.O_RDWR|os.O_CREATE|os.O_APPEND, os.ModePerm)
 	if err != nil {
 		return
 	}
-	logger := log.New(f, "[logger]", log.LstdFlags | log.Lshortfile | log.LUTC)
+	defer f.Close()
+	logger := log.New(f, "[logger]", log.LstdFlags|log.Lshortfile|log.LUTC)
 	// log输出到文件
 	logger.Println([]string{s})
 	return
