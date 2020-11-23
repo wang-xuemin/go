@@ -1,5 +1,7 @@
 package main
 
+import "golang/psutil"
+
 func main() {
 	// s, _ := os.Getwd()
 	// fmt.Println("hello world", s)
@@ -24,5 +26,6 @@ func main() {
 	// demos.DemoTimes()
 	// demos.DemoTimeFormat()
 
+	psutil.Demo()
 
 }
